@@ -5,7 +5,7 @@ import os
 import subprocess
 
 # Define the project directory
-project_dir = os.path.join(os.path.expanduser("~"), "Desktop", "code_projects", "kc303va1")
+project_dir = os.path.join(os.path.expanduser("~"), "Desktop", "code_projects", "kc303va1_programming_language")
 
 # Define the example file path
 example_file = os.path.join(project_dir, "example.kc303va1")
