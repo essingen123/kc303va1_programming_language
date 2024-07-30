@@ -17,10 +17,10 @@ set303c=n
 set303d=y
 
 # 🗑️ tags, separated by commas
-set303e=Git, Bash, Automation, Automagic, un-PEP8-perhaps
+set303e=Java, Python, Bash, Automation, Automagic, un-PEP8-perhaps
 
 # 📝 description
-set303f=A work in progress with automation testing for Git leveraging python, bash etc
+set303f=ANTLR supported programming language 'kilian code 303 version a1 syntax §101a' Complete setup (according to MCMFT) is innovative and aims to simplify programming by using a universal type and a consistent delimiter-based syntax. By formalizing the syntax and implementing a parser, robust and fast to auto port to Node.js, Python, C, Bash etc.
 
 # 🌐 website URL
 set303g=

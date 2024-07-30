@@ -3,7 +3,7 @@ import subprocess
 import shutil
 
 # Define the project directory
-project_dir = os.path.join(os.path.expanduser("~"), "Desktop", "code_projects", "kc303va1")
+project_dir = os.path.join(os.path.expanduser("~"), "Desktop", "code_projects", "kc303va1_programming_language")
 
 # Create the project directory
 os.makedirs(project_dir, exist_ok=True)

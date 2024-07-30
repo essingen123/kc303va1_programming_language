@@ -1,0 +1,52 @@
+
+§§f§main
+§xo§BACKUP_FOLDER = "autominibackups"
+§xo§CONFIG_FILE = "autominibackups_file_watch_config.txt"
+
+mkdir -p §xo§BACKUP_FOLDER
+
+if [ ! -f §xo§CONFIG_FILE ]; then
+echo "# Enter files to watch (one per line):" > §xo§CONFIG_FILE
+echo "# Example: /path/to/file1.txt" >> §xo§CONFIG_FILE
+echo " >> §xo§CONFIG_FILE"
+echo "# LEAVE THIS AS THE LAST LINE PLEASE" >> §xo§CONFIG_FILE
+echo "Config file created. Please add files to watch in §xo§CONFIG_FILE and run the script again."
+exit 0
+fi
+
+if ! command -v entr &> /dev/null; then
+echo "entr is not installed. Please install it and run the script again."
+exit 1
+fi
+
+§§f§is_file_readable
+§xi§file = §xi§1
+if [ ! -f §xi§file ]; then
+echo "Warning: File '§xi§file' does not exist. Skipping."
+return 1
+elif [ ! -r §xi§file ]; then
+echo "Warning: File '§xi§file' is not readable. Skipping."
+return 1
+fi
+return 0
+
+§§f§watch_file
+§xi§file = §xi§1
+if §f§is_file_readable §xi§file; then
+echo "Watching §xi§file"
+filename="${§xi§file##*/}"
+extension="${filename##*.}"
+filename_no_ext="${filename%.*}"
+timestamp=$(date +'%y%m%d%H%M%S')
+backup_filename="${filename_no_ext}_autominibackup${timestamp}.${extension}"
+echo §xi§file | entr -p sh -c "cp '§xi§file' '§xo§BACKUP_FOLDER/§xo§backup_filename'" &
+fi
+
+while IFS= read -r file; do
+if [ -n §xi§file ] && [[ ! §xi§file =~ ^\s*# ]]; then
+§f§watch_file §xi§file
+fi
+done < §xo§CONFIG_FILE
+
+echo "File watching started. Press Ctrl+C to stop."
+wait
